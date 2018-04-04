@@ -13,17 +13,32 @@ class App extends Component {
     showPersons: false
   };
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Keone', age: 30 },
-        { name: event.target.value, age: 30 },
-        { name: 'Will', age: 27 }
-      ]
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(person => {
+      return person.id === id;
     });
+
+    // using the spread operator creates a new object rather than a reference
+    // to the original person object being held in state
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    // alteranitively use
+    // const person = Object.assign( {}, this.state.persons[personIndex]);
+
+    person.name = event.target.value;
+
+    // again use spread to retrieve new array
+    const persons = [ ...this.state.persons ];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   }
 
   deletePersonHandler = (personIndex  ) => {
+    // using the spread operator or the slice method returns a new array rather
+    // than using a reference to the original array held in state
     //  const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
@@ -54,7 +69,8 @@ class App extends Component {
               key={person.id}
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age}/>
+              age={person.age}
+              changed={(event) => this.nameChangedHandler(event, person.id)}/>
           })}
         </div>
       )
