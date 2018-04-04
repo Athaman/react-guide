@@ -6,3 +6,10 @@
   padding: 16px;
   text-align: center;
 }
+
+/*  non radium solution to adding media queries
+@media (min-width: 500px) {
+  .Person {
+    width: 450px;
+  }
+} */
