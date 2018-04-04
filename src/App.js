@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  // state like this would normally come from a database or external source
   state = {
     persons: [
       { id: '1', name: 'Keone', age: 30 },
@@ -24,7 +25,7 @@ class App extends Component {
       ...this.state.persons[personIndex]
     };
 
-    // alteranitively use
+    // alternitively use
     // const person = Object.assign( {}, this.state.persons[personIndex]);
 
     person.name = event.target.value;
@@ -52,7 +53,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -73,7 +75,9 @@ class App extends Component {
               changed={(event) => this.nameChangedHandler(event, person.id)}/>
           })}
         </div>
-      )
+      );
+
+      style.backgroundColor = 'red';
     }
 
     return (
