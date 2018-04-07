@@ -17,7 +17,8 @@ class App extends Component {
         { id: '2', name: 'Will', age: 27}
       ],
       randomValue: 'some other state',
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     };
   }
 
@@ -93,7 +94,12 @@ class App extends Component {
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow });
+    this.setState( (prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      };
+    } );
   }
 
   render() {
