@@ -27,6 +27,23 @@ class App extends Component {
     console.log('[app.js] inside componentDidMount' )
   }
 
+  componentWillReceiveProps(props) {
+    console.log('[UPDATE App.js] component will receive props');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] inside shouldComponentUpdate', nextProps, nextState);
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] inside componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[UPDATE App.js] inside componentDidUpdate');
+  }
+
 
   // state like this would normally come from a database or external source
   // this is more modern than using declaration in constructor
