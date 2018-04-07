@@ -5,16 +5,40 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[app.js] inside constructor', props);
+    this.state = {
+      persons: [
+        { id: '1', name: 'Keone', age: 30 },
+        { id: '3', name: 'Chris', age: 30 },
+        { id: '2', name: 'Will', age: 27}
+      ],
+      randomValue: 'some other state',
+      showPersons: false
+    };
+  }
+
+  compononentWillMount() {
+    console.log('[app.js] inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[app.js] inside componentDidMount' )
+  }
+
+
   // state like this would normally come from a database or external source
-  state = {
-    persons: [
-      { id: '1', name: 'Keone', age: 30 },
-      { id: '3', name: 'Chris', age: 30 },
-      { id: '2', name: 'Will', age: 27}
-    ],
-    randomValue: 'some other state',
-    showPersons: false
-  };
+  // this is more modern than using declaration in constructor
+  // state = {
+  //   persons: [
+  //     { id: '1', name: 'Keone', age: 30 },
+  //     { id: '3', name: 'Chris', age: 30 },
+  //     { id: '2', name: 'Will', age: 27}
+  //   ],
+  //   randomValue: 'some other state',
+  //   showPersons: false
+  // };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(person => {
@@ -54,6 +78,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[app.js] inside render')
     let persons = null;
 
     if (this.state.showPersons) {
